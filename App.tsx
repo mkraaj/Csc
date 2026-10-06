@@ -92,7 +92,7 @@ function CategoryPage() {
       <p className="text-muted-foreground mb-8">{list.length} tools • all run privately in your browser</p>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {list.map((t, i) => (
-          <Link key={t.id} to={`/tool/${t.id}`} className="glass rounded-2xl p-5 hover:shadow-xl hover:-translate-y-1 transition-all reveal" style={{ transitionDelay: `${i * 40}ms` }}>
+          <Link key={t.id} to={`tool/${t.id}`} className="glass rounded-2xl p-5 hover:shadow-xl hover:-translate-y-1 transition-all reveal" style={{ transitionDelay: `${i * 40}ms` }}>
             <span className="text-3xl">{t.icon}</span>
             <p className="font-display font-semibold mt-3">{t.name}</p>
             <p className="text-xs text-muted-foreground mt-1 line-clamp-2">{t.desc}</p>
@@ -118,7 +118,7 @@ function AllTools() {
           <h2 className="font-display text-xl font-bold text-primary mb-4">{l}</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
             {TOOLS.filter((t) => t.name[0].toUpperCase() === l).sort((a, b) => a.name.localeCompare(b.name)).map((t) => (
-              <Link key={t.id} to={`/tool/${t.id}`} className="glass rounded-xl px-4 py-3.5 hover:shadow-lg hover:-translate-y-0.5 transition-all flex items-center gap-3">
+              <Link key={t.id} to={`tool/${t.id}`} className="glass rounded-xl px-4 py-3.5 hover:shadow-lg hover:-translate-y-0.5 transition-all flex items-center gap-3">
                 <span className="text-xl">{t.icon}</span>
                 <div className="min-w-0"><p className="text-sm font-medium truncate">{t.name}</p><p className="text-[11px] text-muted-foreground">{t.category}</p></div>
               </Link>
