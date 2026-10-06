@@ -1,24 +1,30 @@
 import { useEffect, lazy, Suspense } from 'react'
-import { Routes, Route, useParams, Link, useLocation } from 'react-router'
+import { Routes, Route, useParams, Link, useLocation } from 'react-router-dom'
 import Layout from '@/components/Layout'
 import Bird from '@/components/Bird'
 import Home from '@/pages/Home'
 import { TOOLS, CATEGORIES, toolsByCategory } from '@/lib/tools'
 import { useSmoothScroll, useReveal } from '@/hooks/useSmoothScroll'
 import { Toaster } from '@/components/ui/sonner'
+
 // Lazy-loaded tool modules (code splitting — fast first paint)
 const L = (loader: () => Promise<any>, name: string) => lazy(() => loader().then((m) => ({ default: m[name] }))) as React.ComponentType<any>
+
 const imgL = () => import('@/pages/tools/ImageTools')
 const pdfL = () => import('@/pages/tools/PdfTools')
 const edL = () => import('@/pages/tools/PdfEditor')
 const miscL = () => import('@/pages/tools/MiscTools')
+
 const ImageCompressor = L(imgL, 'ImageCompressor'), ImageCrop = L(imgL, 'ImageCrop'), ImageConverter = L(imgL, 'ImageConverter')
 const ImageRotateFlip = L(imgL, 'ImageRotateFlip'), ImageMetadata = L(imgL, 'ImageMetadata'), FileRename = L(imgL, 'FileRename')
 const ImageToPdf = L(imgL, 'ImageToPdf'), ImageWatermark = L(imgL, 'ImageWatermark'), ImageResizer = L(imgL, 'ImageResizer')
+
 const PdfMerge = L(pdfL, 'PdfMerge'), PdfSplit = L(pdfL, 'PdfSplit'), PdfCompressor = L(pdfL, 'PdfCompressor'), PdfRotate = L(pdfL, 'PdfRotate')
 const PdfOrganize = L(pdfL, 'PdfOrganize'), PdfWatermark = L(pdfL, 'PdfWatermark'), PdfPageNumbers = L(pdfL, 'PdfPageNumbers')
 const PdfToImage = L(pdfL, 'PdfToImage'), PdfToText = L(pdfL, 'PdfToText'), PdfMetadata = L(pdfL, 'PdfMetadata')
+
 const PdfEditor = L(edL, 'PdfEditor'), PdfOcr = L(edL, 'PdfOcr')
+
 const ZipCreate = L(miscL, 'ZipCreate'), ZipExtract = L(miscL, 'ZipExtract'), TextToZip = L(miscL, 'TextToZip')
 const TxtViewer = L(miscL, 'TxtViewer'), TxtToPdf = L(miscL, 'TxtToPdf'), Base64Tool = L(miscL, 'Base64Tool')
 const PhotoLocker = L(() => import('@/pages/tools/PhotoLocker'), 'PhotoLocker')
